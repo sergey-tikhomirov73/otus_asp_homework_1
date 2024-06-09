@@ -13,8 +13,8 @@ namespace Otus.Teaching.PromoCodeFactory.Core.Domain.Administration
 
         public string Email { get; set; }
 
-        public List<Role> Roles { get; set; }
-
+      //  public List<Role> Roles { get; set; }
+        public List<Guid> RoleGuids { get; set; } // список идентификаторов ролей
         public int AppliedPromocodesCount { get; set; }
     }
 }

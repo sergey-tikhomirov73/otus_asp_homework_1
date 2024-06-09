@@ -26,7 +26,7 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost.Controllers
         /// Получить все доступные роли сотрудников
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
+     /*   [HttpGet]
         public async Task<List<RoleItemResponse>> GetRolesAsync()
         {
             var roles = await _rolesRepository.GetAllAsync();
@@ -40,6 +40,6 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost.Controllers
                 }).ToList();
 
             return rolesModelList;
-        }
+        }*/
     }
 }

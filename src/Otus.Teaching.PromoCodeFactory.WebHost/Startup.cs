@@ -11,6 +11,7 @@ using Otus.Teaching.PromoCodeFactory.Core.Abstractions.Repositories;
 using Otus.Teaching.PromoCodeFactory.Core.Domain.Administration;
 using Otus.Teaching.PromoCodeFactory.DataAccess.Data;
 using Otus.Teaching.PromoCodeFactory.DataAccess.Repositories;
+using Otus.Teaching.PromoCodeFactory.WebHost.Models;
 
 namespace Otus.Teaching.PromoCodeFactory.WebHost
 {
@@ -21,10 +22,30 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddScoped(typeof(IRepository<Employee>), (x) => 
-                new InMemoryRepository<Employee>(FakeDataFactory.Employees));
-            services.AddScoped(typeof(IRepository<Role>), (x) => 
-                new InMemoryRepository<Role>(FakeDataFactory.Roles));
+            FakeDataFactory.Build();
+
+          //  services.AddScoped(typeof(IRepository<Employee>), (x) =>                 new InMemoryRepository<Employee>(FakeDataFactory.Employees));
+            
+           
+            services.AddSingleton(typeof(IRepository<Employee>), new InMemoryRepository<Employee>(FakeDataFactory.Employees));
+
+          //  services.AddSingleton<IRepository<Employee>,InMemoryRepository<Employee>>();
+
+          //  services.AddScoped(typeof(IRepository<Role>), (x) =>                 new InMemoryRepository<Role>(FakeDataFactory.Roles));
+             services.AddSingleton(typeof(IRepository<Role>), new InMemoryRepository<Role>(FakeDataFactory.Roles));
+
+          //  services.AddSingleton<IRepository<Employee>, InMemoryRepository<Employee>>();
+           // services.AddSingleton()
+
+
+         //   services.AddTransient<ITestEntityTransient, TestEntity>();
+          //  services.AddScoped<ITestEntityScoped, TestEntity>();
+         //   services.AddSingleton<ITestEntitySingleton, TestEntity>();
+            
+
+          //  List<Employee> list=FakeDataFactory.Employees.ToList<Employee>().ToList();
+
+         //   list.Add(new Employee() { FirstName="Sergey",LastName="Tikhomirov",Email="st@mail.ru",Id=Guid.NewGuid(), AppliedPromocodesCount=0, Roles=null});
 
             services.AddOpenApiDocument(options =>
             {
